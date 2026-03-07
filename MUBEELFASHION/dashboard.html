@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link rel="stylesheet" href="public/output.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="mubeel fashion fiveicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="mubeel fashion fiveicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="mubeel fashion fiveicons/favicon-16x16.png">
+    <link rel="manifest" href="mubeel fashion fiveicons/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="mubeel fashion fiveicons/android-chrome-192x192.png">
+</head>
+<body class="w-full h-dvh flex flex-col px-[2%] md:px-[10%] xl:px-[20%] relative box-border overflow-hidden">
+    <header class="flex 
+                    sm:flex-col
+                    justify-center 
+                    md:flex-row 
+                    md:justify-around 
+                    items-center
+                    gap-4
+                    py-5 
+                    md:px-[] bg-black 
+                    fixed w-full 
+                    top-0 shadow-md
+                    z-50 ">
+        <div>
+        <h1  class="text-3xl font-bold Logo"><img class="inline-block w-12" src="images/img1.png" alt="mubeel logo"> mubeel <span class="text-yellow-500">fashion</span></h1>
+        </div>
+        <div>
+            <nav class="hidden md:flex ">
+            <ul class="flex space-x-4 ">
+                <li><a href="#home" class="text-lg">Home</a></li>
+                <li><a href="#about" class="text-lg">About</a></li>
+                <li><a href="#contact" class="text-lg">Contact</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+    <main class="mt-30 flex justify-center items-center">
+        <div class="mt-20 flex flex-col justify-center items-center w-[90%] ">
+            <form action="#"  >
+                <fieldset class="grid items-center" >
+                    <legend>Add a product</legend>
+                    <div class="mb-4 mt-4">
+                        <label for="image">Image URL:</label>
+                        <input type="text" id="image" name="image" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="description">Description:</label>
+                        <input type="text" id="description" name="description" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="oder">ORder layout:</label>
+                        <select name="order" id="order">
+                            <option value="" disabled selected>Display Order</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <!-- <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>  -->
+                        </select>
+                    </div>
+                    <button class="border-spacing-0 text-black font-bold text-3xl" type="submit">Add Product</button>
+                </fieldset>
+            </form>
+        </div>
+    </main>
+    <script type="module" src="./backend/admin.js"></script>
+</body>
+</html>

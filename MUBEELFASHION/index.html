@@ -1,0 +1,148 @@
+/*DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mubeel</title>
+    <link rel="stylesheet" href="public/output.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="mubeel fashion fiveicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="mubeel fashion fiveicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="mubeel fashion fiveicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="mubeel fashion fiveicons/site.webmanifest" />
+  </head>
+  <body
+    class="w-full h-dvh flex flex-col px-[2%] md:px-[10%] xl:px-[20%] relative box-border overflow-hidden"
+  >
+    <header
+      class="flex flex-col justify-center md:flex-row md:justify-around items-center gap-4 py-5 md:px-[] bg-black fixed w-full top-0 shadow-md z-50"
+    >
+      <div>
+        <h1 class="text-3xl font-bold Logo">
+          <img
+            class="inline-block w-12"
+            src="images/img1.png"
+            alt="mubeel logo"
+          />
+          mubeel <span class="text-yellow-500">fashion</span>
+        </h1>
+      </div>
+      <div>
+        <nav class="hidden">
+          <ul class="flex space-x-4">
+            <li><a href="#home" class="text-lg">Home</a></li>
+            <li><a href="#about" class="text-lg">About</a></li>
+            <li><a href="#contact" class="text-lg">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mt-20 w-full">
+      <section id="home" class="grid gap-4 relative">
+        <div class="popup  fixed top-[10%] left-0 m-12 md:h-screen  bg-black hidden z-50"
+        >
+          <div
+            class="w-full md:w-3/4 lg:w-1/2 xl:w-1/3 2xl:w-1/4 h-3/4 mb-4 rounded-lg overflow-hidden img-cont"
+          >
+            <!-- <img class="w-full h-full object-cover" src="https://docs.material-tailwind.com/img/team-3.jpg" alt="profile-picture" /> -->
+          </div>
+          <div
+            class="p-6 text-center bg-black rounded-b-lg w-full md:w-3/4 lg:w-1/2 xl:w-1/3 2xl:w-1/4"
+          >
+            <h4 class="mb-1 text-xl font-semibold text-slate-800 style-name">
+              Natalie Paisley
+            </h4>
+            <p class="text-sm font-bold text-slate-500 uppercase">
+              mubeel fashion
+            </p>
+            <p class="text-base text-slate-600 mt-4 font-light description">
+              The place is close to Barceloneta Beach and bus stop just 2 min by
+              walk and near to Naviglio where you can enjoy the main night life
+              in Barcelona.
+            </p>
+          </div>
+          <div class="flex justify-center p-6 pt-2 gap-7">
+            <button
+              class="min-w-32 rounded-md <!-- bg-slate-800 --> py-2 px-5 border-transparent bg-yellow-600 text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none download-btn"
+              type="button"
+            >
+              Download
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="w-full h-auto pt-8 pb-4 px-2 bg-black rounded-lg shadow-md grid gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3"
+        >
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4 mb-4"
+          >
+            <div class="product-cont flex flex-col gap-4">
+              <!-- Example product images -->
+              <!-- Add more images as needed -->
+            </div>
+
+            <div class="product-cont2 flex flex-col gap-4">
+              <!-- Example product images -->
+              <!-- Add more images as needed -->
+            </div>
+          </div>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4 mb-4"
+          >
+            <div class="product-cont3 flex flex-col gap-4">
+              <!-- Example product images -->
+              <!-- Add more images as needed -->
+            </div>
+            <div class="product-cont4 flex flex-col gap-4">
+              <!-- Example product images -->
+              <!-- Add more images as needed -->
+            </div>
+          </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4">
+            <div class="product-cont5 flex flex-col gap-4">
+              <!-- Example product images -->
+              <!-- Add more images as needed -->
+            </div>
+
+            <div class="product-cont6 flex flex-col gap-4">
+            <!-- Example product images -->
+            <!-- Add more images as needed -->
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="about" class="text-center mb-20">
+        <h2 class="text-3xl font-bold mb-4">About Us</h2>
+        <p class="max-w-md mx-auto">
+          We are dedicated to bringing you the best in fashion, with a focus on
+          quality and style.
+        </p>
+      </section>
+
+      <section id="contact" class="text-center">
+        <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+        <p class="max-w-md mx-auto">Have questions? Reach out to us at</p>
+      </section>
+    </main>
+
+    <script type="module" src="src/script.js"></script>
+  </body>
+</html>

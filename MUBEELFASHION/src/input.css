@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --primary-color: #030303;
+    --secondary-color: #2c2c2e;
+    --accent-color: #ffdb89;
+    --text-color: #ffffff;
+}
+@layer base {
+    body{
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    };
+    header{
+        background-color: black;
+    }
+}
+
+.product-cont{
+    /* background: url("https://www.pinterest./pin/29766047532423012/");
+    background-position: center;
+    background-size: cover;
+     */
+
+}
+option{
+    color: black;
+    background-color: white;
+    font-weight: 600;
+    font-size: large;
+    padding: 5px;
+    
+}

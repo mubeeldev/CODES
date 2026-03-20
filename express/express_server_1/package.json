@@ -1,0 +1,16 @@
+{
+  "name": "express_server_1",
+  "version": "1.0.0",
+  "description": "my server taraining",
+  "license": "ISC",
+  "author": "mubeeldev",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

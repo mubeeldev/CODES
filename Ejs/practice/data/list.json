@@ -1,0 +1,30 @@
+{
+  "todolist": [
+    {
+      "id": 1,
+      "title": "Learn Tailwind CSS",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Build Express API",
+      "completed": true
+    },
+    {
+      "id": 1774271665808,
+      "title": "chat with my wife"
+    },
+    {
+      "id": 1774271751921,
+      "title": "sa "
+    },
+    {
+      "id": 1774275601001,
+      "title": "read book"
+    },
+    {
+      "id": 1774278842665,
+      "title": "write a code"
+    }
+  ]
+}

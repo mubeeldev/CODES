@@ -1,0 +1,10 @@
+/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
+.grid {
+  display: grid;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}

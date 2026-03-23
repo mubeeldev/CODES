@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/output.css">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://kit.fontawesome.com/9d283e074e.js" crossorigin="anonymous"></script>
+    <title>todo list</title>
+</head>
+<body class="grid items-center justify-center font-mono p-5 bg-[#FFDBFD] ">
+    <h1 class="text-3xl font-bold font-mono tracking-wider text-center " > <%= title %> </h1>
+    <div>
+        <div class="text-2xl font-bold tracking-wide text-black my-4 border border-[#8494FF] py-5 rounded-b-md hover:shadow-md">
+            <ul class="">
+                <% todoitems.map(item => {%>
+                    <div class="flex justify-between items-center hover:bg-[#C9BEFF] px-4" >
+                        <li class=" p-2 transition-colors duration-200 ease-linear"> <%= item.title %></li>
+                        <div>
+                            <button><i class="fa-regular fa-circle-check"></i></button>
+                            <button><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button><i class="fa-solid fa-trash"></i></button>
+
+                        </div>
+                    </div>
+                <%})%>
+            </ul>
+        </div>
+        <form action="/" method="post">
+            <fieldset>
+                <input type="text" name="title" placeholder="add New Task!" class="bg-[#C9BEFF] hover:bg-[#bdb4e9] text-black transition-colors duration-700 ease-linear text-2xl py-2 pl-4 rounded-md focus:bg-[#FFDBFD] focus:border-[#6367FF] ">
+                <button type="submit" class="py-2 px-5 rounded-md text-2xl text-[#6367FF] font-light border border-[#6367FF] hover:bg-[#6367FF] hover:text-[#FFDBFD] transition-colors duration-700 ease-in-out active:bg-[#C9BEFF] ">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

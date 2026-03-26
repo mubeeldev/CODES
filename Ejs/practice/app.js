@@ -17,10 +17,13 @@ const pageText = {
     title :"TODO LIST APP"
 }
 
+// fs helping function for reading file
 const readData = () => {
     let data = fs.readFileSync(filePath);
     return JSON.parse(data);
 }
+
+// fs helping function for writing file
 const writeData =(data) => {
     fs.writeFileSync(filePath,JSON.stringify(data,null,2))
 }

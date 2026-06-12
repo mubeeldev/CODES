@@ -52,6 +52,8 @@ int main(){
             DeleteStudent();
         }
         else {
+            cout <<"```````````````````````````````````````````````````````" << endl;
+
             cout << "please enter the valid input!" << endl;
         }
         

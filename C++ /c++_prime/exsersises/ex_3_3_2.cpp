@@ -7,14 +7,13 @@ int main() {
    vector<string> items;
    string input;
    while (cin >> input){
-    items.push_back(input);
-
-    for(auto item:items){
-     cout << item << endl;
-     
-    }
+        if(input == "quit"){break;}
+        items.push_back(input);
    }
    
+   for(auto &item :items){
+    cout << item << " ";
+   }
     
 
     

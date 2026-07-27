@@ -1,0 +1,2 @@
+
+    auto beg = text.be

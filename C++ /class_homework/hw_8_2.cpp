@@ -24,7 +24,5 @@ int main() {
     cout << "z = " << z << "\n";
     cout << "sum fun call result = "<<sum(a,3,4) << "\n";
 
-    void print(double y){
-        cout << "hello y = "<< y << "\n";
-    }
+
 }

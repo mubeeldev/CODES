@@ -4,18 +4,14 @@
 
 using namespace std;
 int main () {
-    vector<unsigned> scores(10,0);
+    unsigned scores[11] = {};
     unsigned grade;
-    while (cin >> grade){
-        if(grade < 100) {
-            ++scores[grade/10];
+    while(cin >> grade){
+        if(grade <= 100){
+            ++scores[grade/2];
         }
-        // for(auto &score :scores){
-        //     cout << score << " ";
-        // }
-    };
-    
- 
-    
+    }
+    for(auto i :scores){cout << i << " ";} cout << endl;
+
     return 0;
 }

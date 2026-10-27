@@ -1,0 +1,13 @@
+write a program to ask the user to enter his/her 
+ . age 
+ . driver license
+
+ then print "hired" if his age is grater than 21 and she/he has a driver license, otherwise priny "rejected
+
+ solution
+ 1, collect user age 
+ 2, check if driver license True or false
+ 3, check the condition if age if grater or lesdan 21
+ 4, print "hired" if grater than 21
+ 5, print rejected if lesdan 21
+ 6, terminate the program

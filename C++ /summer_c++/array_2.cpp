@@ -62,6 +62,7 @@ void outprint(int sum, int size){
     cout << "The Sum Of The Students Grade is : " << sum << endl;
     cout << "The Average Of Students Grade is : " << average << endl;
 
+    
 }
 //out print all the numers of the student
 void printarray(int grade[], string name[], int size){

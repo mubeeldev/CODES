@@ -14,20 +14,14 @@ class Course{
             this->instructor = i;
             this->credit = c;
         }
-        // Course(string t, string i, int c){
-        //     title = t;
-        //     instructor = i;
-        //     credit = c;
-        // }
-        ~Course(){
-           // cout << title << " distroyed\n";
-        }
-        void setTittle(string t){this->title = t;}
-        void setInstroctor(string i){this->instructor = i;}
-        void setCredit(int c) {this->credit = c;}
-        string gettitle(){return this->title;}
-        string getInstructor(){return this->instructor;}
-        int getCredit(){return this->credit;}
+        
+        void setTittle(string tt){title = tt;}
+        void setInstroctor(string ii){instructor = ii;}
+        void setCredit(int cc) {credit = cc;}
+        
+        string gettitle(){return title;}
+        string getInstructor(){return instructor;}
+        int getCredit(){return credit;}
 
         void display(){
             cout << "title : " << title
@@ -40,7 +34,7 @@ class Depatment{
         Course c1,c2;
     public:
         Depatment(Course c1, Course c2){ 
-            c1 = c1; c2 = c2;
+            this->c1 = c1; this->c2 = c2;
         }
         void display(){
             cout << "c1 : " ;
@@ -56,8 +50,16 @@ class Depatment{
             }
         }
         bool containsInstructor(string name){
-            return (c1.getInstructor() == name || c2.getInstructor() == name);
-            return (c1.getInstructor() == c2.getInstructor());
+            if(c1.getInstructor() == name ){
+                cout << c1.getInstructor() << "\n"; 
+                return true;
+            }else if(c2.getInstructor() == name){
+                cout << c2.getInstructor() << "\n";
+                return true;
+            }else{
+                return false;
+            };
+           // return (c1.getInstructor() == c2.getInstructor());
         }
 };
 
@@ -66,11 +68,9 @@ int main(){
     Course c2("Physics","Dr.Ali",4);
 
     Depatment dpt(c1,c2);
-    dpt.hightCreditcourse();
-    cout <<  dpt.containsInstructor("dr.Ahmad");
-    c1.display();
-    c2.display();
-    
+    dpt.hightCreditcourse().display();
+
+    dpt.containsInstructor("Dr.Ahmad");
 
     return 0;
 }

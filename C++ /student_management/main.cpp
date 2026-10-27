@@ -25,19 +25,18 @@ struct Student {
 static int nextStudentId = 726; // Unique auto-incrementing ID
 
 // ------------------------------------------------------------------------------------- Function Prototypes------------------------------------------------
-void start(string subject[][5],string trackSubjects[], int subjectSize);
-void NewStudentFromUser(Student [], int& ); // Pass by reference using &
+void start(string subject[][5], string trackSubjects[], int subjectSize);
+void NewStudentFromUser(Student [], int& );
 Student NewStudentInfo();
-void displayStudents( const Student [], const int size, const string trackSubjects[], int subjectSize,const string subjects[][5]);
-void displayStudentDetail(const Student student[], const int size, const string trackSubjects[], const string subjects[][5], int targetIndex) ;
+void displayStudents(const Student [], const int size, const string trackSubjects[], int subjectSize, const string subjects[][5]);
+void displayStudentDetail(const Student student[], const int size, const string trackSubjects[], const string subjects[][5], int targetIndex);
 void viewStudentByIndex(const Student student[], const int size, const string subject[][5], const string trackSubjects[]);
-void searchById( const Student student[], const int size, const string subject[][5]);
-void searchByName( const Student student[], const int size, const string subject[][5]);
+void searchById(const Student student[], const int size, const string subject[][5]);
+void searchByName(const Student student[], const int size, const string subject[][5]);
 void searchStudent(const Student studentList[], const int size, const string subject[][5]);
-void edit(Student student[],string subject[][5], string trackSubjects[], int subjectSize, int size);
-void updateStudentDetails(Student sstudent[], int size ,string subject[][5], string trackSubjects[], int subjectSize, int searchId);
+void edit(Student student[], string subject[][5], string trackSubjects[], int subjectSize, int size);
+void updateStudentDetails(Student sstudent[], int size, string subject[][5], string trackSubjects[], int subjectSize, int searchId);
 void editStudentMenu(Student student[], int size, string subject[][5], string trackSubjects[], int subjectSize, int searchId);
-
 
 // ------------------------------------------------------------------------------Global State-----------------------------------------
 
@@ -87,32 +86,27 @@ int main() {
         {"Biology", "Chemistry", "Algebra", "Psychology", "Technical Writing"}
     };
     int subjectSize = 3;
-    string trackSubjects[subjectSize];  // dynamic array
-    /*
-        assign subjects name to track subject array
-        *******future update **********
-        used array of names to assign subject name in trackSubjects array.
-        use size of subjects name array to size of trackSubject array.
-    */
+    string trackSubjects[3]; 
+
     trackSubjects[0] = "Computer Science";
     trackSubjects[1] = "Engineering";
     trackSubjects[2] = "General Science";
 
     cout << "\n=========================( STUDENT MANAGEMENT SYSTEM ) ==========================\n";
-    start(subjects,trackSubjects,subjectSize);
+    start(subjects, trackSubjects, subjectSize);
 
     return 0;
 }
 
 // ----------------------------------------------------------------------start function --------------------------------------
 
-void start(string subjects[][5], string trackSubjects[], int subjectSize ) {
-    int command;
+void start(string subjects[][5], string trackSubjects[], int subjectSize) {
+    string command;
     
-    // Command navigation loop
+    // Main navigation loop
     while (true) {
         cout << "\n";
-        const char *Opration[] = {"🔵  Add Student", "🟢 Display Students", "🟡 Search Student", "🟠 Compute GPA","⚪ Edit Student Info ", "🔴 Exit"};
+        const char *Opration[] = {"🔵  Add Student", "🟢 Display Students", "🟡 Search Student", "🟠 Compute GPA", "⚪ Edit Student Info ", "🔴 Exit"};
         const int oprationSize = sizeof(Opration) / sizeof(Opration[0]);
         
         for (int i = 0; i < oprationSize; i++) {
@@ -121,33 +115,25 @@ void start(string subjects[][5], string trackSubjects[], int subjectSize ) {
         cout << "--------------------------( use numbers to navigate )------------------------\n";
         cout << "🫟 ✳️ 🫟 ❭❭ ";
 
-        if (!(cin >> command)) break; // Exit loop if invalid input stream
+        cin >> command;
 
-        switch (command) {
-            case 1:
-                NewStudentFromUser(studentList, studentCount);
-                break;
-            case 2: // studentList and studentCoount are global vriable
-                displayStudents(studentList, studentCount, trackSubjects,subjectSize, subjects);
-                break;
-            case 3:// studentList and studentCoount are global vriable
-                searchStudent( studentList,studentCount, subjects );
-                break;
-            case 4:
-                cout << "GPA computation coming soon...\n";
-                break;
-            case 5:
-                edit(studentList, subjects, trackSubjects, subjectSize,studentCount);
-                break;
-            case 6:
-                cout << "Exiting program. Goodbye!\n";
-                return; // Exits start() and finishes main() cleanly
-            
-            default:
-                cout << "------------------------------------------------------------\n";
-                cout << "\t ⚠️ Invalid Entry Please Try Again ⚠️                 | \n  👉  Make Sure To use Provided Numbers Only!  👈          |\n";
-                cout << "------------------------------------------------------------\n";
-                break;
+        if (command == "1") {
+            NewStudentFromUser(studentList, studentCount);
+        } else if (command == "2") {
+            displayStudents(studentList, studentCount, trackSubjects, subjectSize, subjects);
+        } else if (command == "3") {
+            searchStudent(studentList, studentCount, subjects);
+        } else if (command == "4") {
+            cout << "GPA computation coming soon...\n";
+        } else if (command == "5") {
+            edit(studentList, subjects, trackSubjects, subjectSize, studentCount);
+        } else if (command == "6") {
+            cout << "Exiting program. Goodbye!\n";
+            return; // ONLY exit here when selected by user!
+        } else {
+            cout << "------------------------------------------------------------\n";
+            cout << "\t ⚠️ Invalid Entry Please Try Again ⚠️                 | \n  👉  Make Sure To use Provided Numbers Only!  👈          |\n";
+            cout << "------------------------------------------------------------\n";
         }
     }
 }
@@ -161,20 +147,18 @@ void NewStudentFromUser(Student list[], int& size) {
             break;
         }
 
-        // Get info and assign unique ID
         list[size] = NewStudentInfo();
-        size++; // Increments studentCount directly
+        size++;
 
         cout << "✅ Student added successfully!!\n";
-        // Input validation loop for (y/n)
+        
         while (true) {
             cout << "Do you want to add another student? (y/n): ";
             cin >> choice;
 
             if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N') {
-                break; // Valid input received, exit validation loop
+                break;
             }
-            // Display error for invalid choices
             cout << "------------------------------------------------------------\n";
             cout << "⚠️ Invalid Choice! Please enter 'y' for Yes or 'n' for No. ⚠️\n";
             cout << "------------------------------------------------------------\n";
@@ -182,40 +166,40 @@ void NewStudentFromUser(Student list[], int& size) {
     }
 }
 
-Student NewStudentInfo() {   // ---------------------------------- new student information structure ---------------------
+Student NewStudentInfo() {
     Student s;
-    s.id = nextStudentId++; // Generates a unique sequential ID automatically
+    s.id = nextStudentId++; 
     
     cout << "\n[Generated ID: " << s.id << "]\n";
     cout << "Enter Student Name ❭❭ ";
-    getline(cin >> ws, s.name); // Handles names with spaces and consumes leftover newlines
+    getline(cin >> ws, s.name);
     
     string selectedCourse;
-    while (true){
-        cout << "\n🫟 Sellect Major / Course :  \n";
+    while (true) {
+        cout << "\n🫟 Select Major / Course :  \n";
         cout << " 1, Computer Science \n";
         cout << " 2, Engineering \n";
         cout << " 3, General Science \n";
-        cout << "Choose Course Using number (1.2...) : ";
+        cout << "Choose Course Using number (1, 2, 3) : ";
 
         cin >> selectedCourse;
-        if(selectedCourse == "0"){s.trackIndex = 0; break;}
-        else if(selectedCourse == "1"){s.trackIndex = 1; break;}
-        else if (selectedCourse == "2"){s.trackIndex = 2; break;}
+        if (selectedCourse == "1") { s.trackIndex = 0; break; }
+        else if (selectedCourse == "2") { s.trackIndex = 1; break; }
+        else if (selectedCourse == "3") { s.trackIndex = 2; break; }
         
         cout << "------------------------------------------------------------\n";
-        cout << "⚠️ Invalid choice! Please enter 0, 1, or 2. ⚠️\n";
+        cout << "⚠️ Invalid choice! Please enter 1, 2, or 3. ⚠️\n";
         cout << "------------------------------------------------------------\n";
     }
-    // set default grades to 0.00 {student haven't teke exam yet}
-    for(int i = 0; i < 5; ++i){ s.grade[i] == 0.00; }
+
+    for (int i = 0; i < 5; ++i) { s.grade[i] = 0.00; }
     s.gpa = 0.00;
-    s.status = "Comming Soon.........";
+    s.status = "Not Graded";
     
     return s;
 }
 
-void displayStudents(const Student student[], const int size, const string trackSubjects[], int subjectSize, const string subjects[][5]) {   // -------------------------------------------------student display -------------
+void displayStudents(const Student student[], const int size, const string trackSubjects[], int subjectSize, const string subjects[][5]) {
     cout << "\n--------------------( Registered Students )--------------------\n";
     if (size == 0) {
         cout << "No students registered yet.\n";
@@ -223,48 +207,42 @@ void displayStudents(const Student student[], const int size, const string track
     }
     for (int i = 0; i < size; i++) {
         int track = student[i].trackIndex;
-        // priventing user to enter undifine number range 
-        string major = (track >= 0 && track < subjectSize) ? trackSubjects[track]: "Unknow Major"; 
+        string major = (track >= 0 && track < subjectSize) ? trackSubjects[track] : "Unknown Major"; 
 
-        cout << "Index [" << setw(2)  << i << "] | ID: " << setw(4) << student[i].id 
-        << " | Name: "<< left << setw(20) << student[i].name 
-        << " | course: " << major << "\n";
+        cout << "Index [" << setw(2)  << i + 1 << "] | ID: " << setw(4) << student[i].id 
+             << " | Name: " << left << setw(20) << student[i].name 
+             << " | course: " << major << "\n";
     } 
+
     cout << "\nDo you want to view full details for a student? (Enter Index # or 0 to skip): ";
     int choice;
-    if (cin >> choice) {
-        if (choice > 0 && choice <= size) {
-            // Convert 1-based index to 0-based array index
-            displayStudentDetail(student, size, trackSubjects, subjects, choice - 1);
-        } else if (choice != 0) {
-            cout << "-----------------------------------------------------------\n";
-            cout << "⚠️ Index out of range (Valid options: 1 to " << size << ")\n";
-            cout << "-----------------------------------------------------------\n";
+    cin >> choice;
 
-        }
+    if (choice > 0 && choice <= size) {
+        displayStudentDetail(student, size, trackSubjects, subjects, choice - 1);
+    } else if (choice != 0) {
+        cout << "-----------------------------------------------------------\n";
+        cout << "⚠️ Index out of range (Valid options: 1 to " << size << ")\n";
+        cout << "-----------------------------------------------------------\n";
     }
 }
-// -----------------------unused
-void viewStudentByIndex(const Student student[], const int size, const string subject[][5],const string trackSubject[]){
+
+void viewStudentByIndex(const Student student[], const int size, const string subject[][5], const string trackSubject[]) {
     if (size == 0) return;
     cout << "\nDo you want to view full details for a student? (Enter Index # or 0 to skip): ";
     int choice;
-    if (cin >> choice) {
-        if (choice > 0 && choice <= size) {
-            // Convert 1-based index to 0-based array index
-            displayStudentDetail(student, size, trackSubject, subject, choice - 1);
-        } else if (choice != 0) {
-            cout << "-----------------------------------------------------------\n";
-            cout << "⚠️ Index out of range (Valid options: 1 to " << size << ")\n";
-            cout << "-----------------------------------------------------------\n";
-
-        }
-    }
+    cin >> choice;
     
+    if (choice > 0 && choice <= size) {
+        displayStudentDetail(student, size, trackSubject, subject, choice - 1);
+    } else if (choice != 0) {
+        cout << "-----------------------------------------------------------\n";
+        cout << "⚠️ Index out of range (Valid options: 1 to " << size << ")\n";
+        cout << "-----------------------------------------------------------\n";
+    }
 }
 
 void displayStudentDetail(const Student student[], const int size, const string trackSubjects[], const string subjects[][5], int targetIndex) {
-    
     if (targetIndex < 0 || targetIndex >= size) {
         cout << "--------------------------------------------------------\n";
         cout << "              ❌ Invalid index number!\n";
@@ -272,9 +250,8 @@ void displayStudentDetail(const Student student[], const int size, const string 
         cout << "--------------------------------------------------------\n";
         return;
     }
-    if(targetIndex == 0){return;}
 
-    const Student& s = student[targetIndex]; // getting the index information
+    const Student& s = student[targetIndex];
     string major = (s.trackIndex >= 0 && s.trackIndex < 3) ? trackSubjects[s.trackIndex] : "Unknown";
 
     cout << "\n====================( FULL STUDENT RECORD )====================\n";
@@ -286,7 +263,6 @@ void displayStudentDetail(const Student student[], const int size, const string 
 
     int track = s.trackIndex;
     for (int g = 0; g < 5; ++g) {
-        // Simple manual padding without using left/fixed
         cout << "  - " << subjects[track][g] << ": " << s.grade[g] << "\n";
     }
 
@@ -296,12 +272,11 @@ void displayStudentDetail(const Student student[], const int size, const string 
     cout << "===============================================================\n";
 }
 
-void searchStudent(const Student studentList[],const int size, const string subjects[][5]) {  // -----------------------------------------student search--------------------
+void searchStudent(const Student studentList[], const int size, const string subjects[][5]) {
     if (size == 0) {
         cout << "--------------------------------------------------------\n";
         cout << "      ⚠️  No students available in the system.\n";
         cout << "--------------------------------------------------------\n";
-
         return;
     }
 
@@ -314,25 +289,21 @@ void searchStudent(const Student studentList[],const int size, const string subj
     cin >> option;
 
     if (option == "1") {
-        searchById( studentList, studentCount , subjects); // search by id function call 
-    } 
-    else if (option == "2") {
-        searchByName( studentList, studentCount , subjects); // search by name function call  
-    } 
-    else {
+        searchById(studentList, studentCount, subjects); 
+    } else if (option == "2") {
+        searchByName(studentList, studentCount, subjects); 
+    } else {
         cout << "-------------------------------------------------------------\n";
-        cout << " ⚠️ Invalid selection! Please refer to the Instructions page.\n";
+        cout << " ⚠️ Invalid selection! Returning to main menu.\n";
         cout << "-------------------------------------------------------------\n";
-
     }
 }
 
-void searchById( const Student student[], const int size, const string subject[][5]) { //-------------------------------------- serch by id -----------------------------
+void searchById(const Student student[], const int size, const string subject[][5]) {
     if (size == 0) {
         cout << "--------------------------------------------------------\n";
         cout << "      ⚠️ No students available in the system.\n";
         cout << "--------------------------------------------------------\n";
-
         return;
     }
 
@@ -345,7 +316,7 @@ void searchById( const Student student[], const int size, const string subject[]
     cout << "\n--------------------( Search Result )--------------------\n";
     for (int i = 0; i < size; ++i) {
         if (student[i].id == searchID) {
-            cout << "Index    : " << i+1 << "\n";
+            cout << "Index    : " << i + 1 << "\n";
             cout << "ID       : " << student[i].id << "\n";
             cout << "Name     : " << student[i].name << "\n";
             cout << "Grades   :----------------------\n";
@@ -353,7 +324,7 @@ void searchById( const Student student[], const int size, const string subject[]
             int course = student[i].trackIndex;
             
             for (int g = 0; g < 5; ++g) {
-                cout << "\t   "<< left << setw(18) << subject[course][g] << student[i].grade[g] << "\n";
+                cout << "\t   " << left << setw(18) << subject[course][g] << student[i].grade[g] << "\n";
             }
             cout << "\nGPA      : " << setw(3) << student[i].gpa << "\n";
             cout << "Status   : " << student[i].status << "\n";
@@ -367,15 +338,14 @@ void searchById( const Student student[], const int size, const string subject[]
         cout << "--------------------------------------------------------\n";
         cout << "  ❌ No student found with ID: " << searchID << "\n";
         cout << "--------------------------------------------------------\n";
-        
     }
 }
-void searchByName( const Student student[], const int size, const string subject[][5]) {  // ------------------------------search by name ---------------------
+
+void searchByName(const Student student[], const int size, const string subject[][5]) {
     if (size == 0) {
         cout << "--------------------------------------------------------\n";
         cout << "\n  ⚠️ No students available in the system.\n";
         cout << "--------------------------------------------------------\n";
-
         return;
     }
 
@@ -387,9 +357,8 @@ void searchByName( const Student student[], const int size, const string subject
 
     cout << "\n--------------------( Search Results )--------------------\n";
     for (int i = 0; i < size; ++i) {
-        // Simple direct string comparison using ==
         if (student[i].name == searchName) {
-            cout << "Index    : " << i+1 << "\n";
+            cout << "Index    : " << i + 1 << "\n";
             cout << "ID       : " << student[i].id << "\n";
             cout << "Name     : " << student[i].name << "\n";
             cout << "Grades   :----------------------\n";
@@ -397,7 +366,7 @@ void searchByName( const Student student[], const int size, const string subject
             int course = student[i].trackIndex;
             
             for (int g = 0; g < 5; ++g) {
-                cout << "\t   "<< left << setw(18) << subject[course][g] << student[i].grade[g] << "\n";
+                cout << "\t   " << left << setw(18) << subject[course][g] << student[i].grade[g] << "\n";
             }
             cout << "\nGPA      : " << setw(3) << student[i].gpa << "\n";
             cout << "Status   : " << student[i].status << "\n";
@@ -406,28 +375,26 @@ void searchByName( const Student student[], const int size, const string subject
             break;
         }
     }
-    cout << "--------------------------------------------------------\n";
 
     if (!found) {
         cout << "--------------------------------------------------------\n";
         cout << " ❌ No student found with name: " << searchName << "\n";
         cout << "--------------------------------------------------------\n";
-
     }
 }
 
 //---------------------------------------------------------------------- edit section ----------------------------------
-void edit(Student student[],string subject[][5],string trackSubjects[], int subjectSize, int size){
+void edit(Student student[], string subject[][5], string trackSubjects[], int subjectSize, int size) {
     int searchID;
     cout << "\nEnter Student ID: ";
     cin >> searchID;
 
     bool found = false;
 
-    cout << "\n--------------------( Search Result )--------------------\n";
     for (int i = 0; i < size; ++i) {
         if (student[i].id == searchID) {
-            cout << "Index    : " << i+1 << "\n";
+            cout << "\n--------------------( Search Result )--------------------\n";
+            cout << "Index    : " << i + 1 << "\n";
             cout << "ID       : " << student[i].id << "\n";
             cout << "Name     : " << student[i].name << "\n";
             cout << "Grades   :----------------------\n";
@@ -435,7 +402,7 @@ void edit(Student student[],string subject[][5],string trackSubjects[], int subj
             int course = student[i].trackIndex;
             
             for (int g = 0; g < 5; ++g) {
-                cout << "\t   "<< left << setw(18) << subject[course][g] << student[i].grade[g] << "\n";
+                cout << "\t   " << left << setw(18) << subject[course][g] << student[i].grade[g] << "\n";
             }
             cout << "\nGPA      : " << setw(3) << student[i].gpa << "\n";
             cout << "Status   : " << student[i].status << "\n";
@@ -449,23 +416,25 @@ void edit(Student student[],string subject[][5],string trackSubjects[], int subj
         cout << "--------------------------------------------------------\n";
         cout << "    ❌ No student found with ID: " << searchID << "\n";
         cout << "--------------------------------------------------------\n";
-        
+        return; // Safely return to main menu
     }
+
     cout << "\nOptions: [1] Update Student Grade or Course \n \t [2] Change Student ID or Name  [-1] Skip: ";
-    int opt;
+    string opt;
     cin >> opt;
-    if (opt == 1) {
-        updateStudentDetails(student, size, subject, trackSubjects,subjectSize, searchID);
-    } else if (opt == 2) {
-        editStudentMenu(student, size, subject, trackSubjects, subjectSize,searchID);
+    
+    if (opt == "1") {
+        updateStudentDetails(student, size, subject, trackSubjects, subjectSize, searchID);
+    } else if (opt == "2") {
+        editStudentMenu(student, size, subject, trackSubjects, subjectSize, searchID);
     }
 }
-// Helper function to update student grades and recalculate GPA/Status
-void updateStudentDetails( Student student[],int size, string subject[][5], string trackSubjects[], int subjectSize, int targetStudent) {
-    for( int i = 0; i < size; i++){
-        if(student[i].id == targetStudent){
-            cout << "\nWhat would you like to edit for " << student[i].name << " ?\n";
 
+void updateStudentDetails(Student student[], int size, string subject[][5], string trackSubjects[], int subjectSize, int targetStudent) {
+    for (int i = 0; i < size; i++) {
+        if (student[i].id == targetStudent) {
+            cout << "\nWhat would you like to edit for " << student[i].name << " ?\n";
+            break;
         }
     }
     
@@ -473,11 +442,11 @@ void updateStudentDetails( Student student[],int size, string subject[][5], stri
     cout << "2. Edit Grades \n";
     cout << "3. Edit Both \n";
     cout << "Enter choice: ";
-    int editChoice;
+    string editChoice;
     cin >> editChoice;
 
     // 1. Edit course / Major
-    if (editChoice == 1 || editChoice == 3) {
+    if (editChoice == "1" || editChoice == "3") {
         cout << "\nAvailable courses:\n";
         for (int i = 0; i < subjectSize; ++i) {
             cout << "  [" << i << "] " << trackSubjects[i] << "\n";
@@ -486,8 +455,8 @@ void updateStudentDetails( Student student[],int size, string subject[][5], stri
         int newTrack;
         cin >> newTrack;
         if (newTrack >= 0 && newTrack < subjectSize) {
-            for( int i = 0; i < size; i++){
-                if(student[i].id == targetStudent){
+            for (int i = 0; i < size; i++) {
+                if (student[i].id == targetStudent) {
                     student[i].trackIndex = newTrack;
                 }
             }
@@ -500,25 +469,35 @@ void updateStudentDetails( Student student[],int size, string subject[][5], stri
     }
 
     // 2. Edit Subject Grades
-    if (editChoice == 2 || editChoice == 3) {
-        for( int i = 0; i < subjectSize ; i++){
-            cout << i+1<< "\n, Subject: " << trackSubjects[i] << "\n";
-        }
-        cout << "sellact Subject To Edit : ";
-        int track;
-        cin >> track;
-        double sum = 0.0;
-        for( int i = 0; i < subjectSize; i++){
-            if( track  > 0 && track < subjectSize && student[i].id == targetStudent ){
-                cout << "Enter grade for " << subject[track][i] << " (currently " << student->grade[i] << "): ";
-                cin >> student[i].grade[track];
-                sum += student[i].grade[track];
+    if (editChoice == "2" || editChoice == "3") {
+        int targetIdx = -1;
+        for (int i = 0; i < size; i++) {
+            if (student[i].id == targetStudent) {
+                targetIdx = i;
+                break;
             }
+        }
+
+        if (targetIdx != -1) {
+            int track = student[targetIdx].trackIndex;
+            double sum = 0.0;
+            for (int g = 0; g < 5; g++) {
+                cout << "Enter grade for " << subject[track][g] 
+                << " (currently " << student[targetIdx].grade[g] << "): ";
+                cin >> student[targetIdx].grade[g];
+                sum += student[targetIdx].grade[g];
+            }
+            
+            // Recalculate GPA & Status
+            double average = sum / 5.0;
+            student[targetIdx].gpa = (average / 100.0) * 4.0;
+            student[targetIdx].status = (student[targetIdx].gpa >= 2.0) ? "PASS" : "FAIL";
+            cout << "✅ Grades and GPA updated successfully!\n";
         }
     }
 }
 
-void editStudentMenu( Student student[], int size, string subject[][5], string trackSubjects[], int subjectSize,int targetStudent) {
+void editStudentMenu(Student student[], int size, string subject[][5], string trackSubjects[], int subjectSize, int targetStudent) {
     if (size == 0) {
         cout << "\nNo students available to edit.\n";
         return;
@@ -529,11 +508,10 @@ void editStudentMenu( Student student[], int size, string subject[][5], string t
     cout << "1. Student ID\n";
     cout << "2. Student Name\n";
     cout << "Enter choice: ";
-    int searchChoice;
+    string searchChoice;
     cin >> searchChoice;
 
-    // Option 1: Edit by Student ID
-    if (searchChoice == 1) {
+    if (searchChoice == "1") {
         cout << "Enter New Student ID: ";
         int newId;
         cin >> newId;
@@ -543,9 +521,8 @@ void editStudentMenu( Student student[], int size, string subject[][5], string t
                 break;
             }
         }
-    } 
-    // Option 3: Edit by Student Name
-    else if (searchChoice == 2) {
+        cout << "✅ ID updated successfully!\n";
+    } else if (searchChoice == "2") {
         cout << "Enter Student Name: ";
         string newName;
         getline(cin >> ws, newName);
@@ -555,12 +532,10 @@ void editStudentMenu( Student student[], int size, string subject[][5], string t
                 break;
             }
         }
+        cout << "✅ Name updated successfully!\n";
     } else {
         cout << "--------------------------------------------------------\n";
         cout << "                 ❌ Invalid choice!\n";
         cout << "--------------------------------------------------------\n";
-
-        return;
     }
-
 }

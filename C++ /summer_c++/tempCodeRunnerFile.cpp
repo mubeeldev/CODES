@@ -1,5 +1,2 @@
-void toread(int * const){
-//     for(int i = 0; i < size ; i++){
-
-//     }
-// }
+cout << "Enter Student id : ";
+        cin >> s1.id.id;
